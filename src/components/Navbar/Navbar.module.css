@@ -1,0 +1,19 @@
+.nav {
+    grid-area: n;
+    background-color: beige;
+  }
+.nav ul {
+  list-style: none;
+}
+.item a {
+  color: #000;
+  text-decoration: none;
+  
+}
+.item a:hover {
+  background-color: gold;
+  cursor: pointer;
+}
+.item a.active {
+  background-color: gold;
+}

@@ -1,0 +1,11 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 22fr;
+    background-color: antiquewhite;
+}
+.dialogsItems {
+    background-color: cadetblue;
+}
+.message {
+    background-color: cornflowerblue;
+}

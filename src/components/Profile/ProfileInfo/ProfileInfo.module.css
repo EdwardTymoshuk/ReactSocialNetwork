@@ -1,0 +1,9 @@
+.contentBlock img {
+    background-size: contain;
+    height: 400px;
+    width: auto;
+}
+
+.descriptionBlock {
+    padding: 10px;
+}
