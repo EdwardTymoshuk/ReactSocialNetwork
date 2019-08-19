@@ -9,3 +9,7 @@
 .message {
     background-color: cornflowerblue;
 }
+.messageForm {
+    width: 200px;
+    height: 100px;
+}

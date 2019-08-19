@@ -6,13 +6,12 @@ const MyPosts = (props) => {
     let postsElements = props.posts.map(item => <Post message={item.message} likeCount={item.likeCount} />)
     let newPostElement = React.createRef();
 
-    let addPost = () => {
-        props.dispatch({type: 'ADD-POST'});
+    let onAddPost = () => {
+        props.addPost();
     }
-
     let onPostChange = () => {
         let text = newPostElement.current.value;
-        props.dispatch({type: 'UPDATE-NEW-POST-TEXT', text: text});
+        props.updateNewPostText(text);
     }
     return (
         <div className={classes.postBlock}>
@@ -22,7 +21,7 @@ const MyPosts = (props) => {
                           value={props.newPostText}/>
             </div>
             <div>
-                <button onClick={addPost}>Add post</button>
+                <button onClick={onAddPost}>Add post</button>
             </div>
             <div className={classes.posts}>
                 {postsElements}
