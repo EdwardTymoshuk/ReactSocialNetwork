@@ -1,13 +1,37 @@
 .header {
   grid-area: h;
-  background-color: #ACBED8;
+  background-color: #393D3F;
+  color: #FDFDFF;
+
+  display: grid;
+  grid-template-columns: 6fr 3fr; 
 }
-.header h2 {
-  display: inline;
-  
+.appDescription {
+  display: grid;
+  grid-template-columns: 3fr 3fr; 
 }
-.header img {
-  margin: 0 20px;
-  width: 60px;
-  height: 60px;
+.logo {
+  color: #FDFDFF;
+  font-size: 3em; 
+  display: grid;
+  align-content: center;
+  text-align: center;
+}
+.description {
+  padding-left: 40px;
+  color: #FDFDFF;
+  font-size: 1.2em;
+  display: grid;
+  align-content: center;
+}
+.loginBlock {
+  display: grid;
+  align-content: center;
+
+  float: right;
+  text-align: right;
+  padding-right: 40px;
+}
+.loginBlock a{
+  color: #FDFDFF;
 }

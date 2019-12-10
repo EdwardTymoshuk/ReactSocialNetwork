@@ -1,11 +1,23 @@
 import React from 'react';
 import classes from './Header.module.css';
+import {NavLink} from 'react-router-dom';
 
-const Header = () => {
+const Header = (props) => {
+  let zalupa;
+  if (props.isAuth) {
+    zalupa = <NavLink to={'/login'}>PAshol nahoj</NavLink>
+  } else {
+    zalupa = <NavLink to={'/login'}>Login</NavLink>
+  }
     return (
         <header className={classes.header}>
-        <img src="https://cdn.shopify.com/s/files/1/0926/9056/t/1/assets/logo.png?7"/>
-        <h2>DICKER: the dickest social network</h2>
+        <div className={classes.appDescription}>
+          <div className={classes.description}>Social network made with React/Redux</div>
+          <div className={classes.logo}>SN</div>
+        </div>
+        <div className={classes.loginBlock}>
+         <div>{zalupa}</div>
+        </div>
       </header>
     )
 } 

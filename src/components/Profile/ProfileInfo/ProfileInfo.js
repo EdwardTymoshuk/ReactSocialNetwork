@@ -1,14 +1,19 @@
 import React from 'react';
 import classes from './ProfileInfo.module.css';
+import Preloader from '../../common/preloader/Preloader';
+import ProfileStatus from './ProfileStatus';
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+if (!props.profile) { return <Preloader /> }
     return (
         <div >
-            <div className={classes.contentBlock} >
-                <img src="https://www.setaswall.com/wp-content/uploads/2017/03/Outer-Space-Stars-Galaxies-Frozen-Wallpaper-1920x1200.jpg" />
-            </div>
+           
             <div className={classes.descriptionBlock} >
-                ZAAAAAAALUUUUUUPAAA
+                <img src={props.profile.photos.large} />
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                <div>Name: {props.profile.fullName}</div>
+                <div>Id: {props.profile.userId}</div>
+                <div>About me: {props.profile.aboutMe}</div>
             </div>
         </div>
     )

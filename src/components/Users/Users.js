@@ -1,45 +1,59 @@
 import React from 'react';
-import classes from './Users.module.css';
+import classes from './Users.module.css'
+import userPhoto from '../../assets/images/user.jpg';
+import {NavLink} from 'react-router-dom';
 
 const Users = (props) => {
-
-    if(props.users.length === 0) {
-        props.setUsers(
-            [
-                {id:1, photoUrl: 'https://icon-library.net/images/penis-icon-16x16/penis-icon-16x16-10.jpg', followed: true, fullName: 'Filip', status: 'Jebac policje', location: {city: 'Zalupa', country: 'Russia'}},
-                {id:2, photoUrl: 'https://icon-library.net/images/penis-icon-16x16/penis-icon-16x16-10.jpg', followed: true, fullName: 'Nikolay', status: 'Sharmanakaaaaa', location: {city: 'Mlynary', country: 'Poland'}},
-                {id:3, photoUrl: 'https://icon-library.net/images/penis-icon-16x16/penis-icon-16x16-10.jpg', followed: false, fullName: 'Maksim', status: 'Jebac stare rury', location: {city: 'Zasransk', country: 'Ukraine'}}
-            ]
-        )
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    let pages = [];
+    for (let i=1; i <= pagesCount; i++) {
+        pages.push(i)
     }
     return (
     <div>
-        {
-            props.users.map(item => <div key={item.id}>
-                    <span>
-                        <div>
-                            <img src={item.photoUrl} className={classes.userPhoto} />
-                        </div>
-                        <div>
-                            {item.followed 
-                                ? <button onClick={() => {props.unfollow(item.id)}}>Unfollow</button> 
-                                : <button onClick={() => {props.follow(item.id)}}>Follow</button>}
-                        </div>
-                    </span>
-                    <span>
-                        <span>
-                            <div>{item.fullName}</div>
-                            <div>{item.status}</div>
-                        </span>
-                        <span>
-                            <div>{item.location.city}</div>
-                            <div>{item.location.country}</div>
-                        </span>
-                    </span>
-                </div>
-            )
-        }
+    <div className={classes.pages}>
+
+        {pages.map(item => 
+            { return <span className={props.currentPage === item && classes.selectedPage}
+                                    onClick={(e) => props.onPageChanged(item)}>{item}</span>})}
     </div>
+    {
+        props.users.map(item => <div key={item.id}>
+                <span>
+                    <div>
+                        <NavLink to={'/profile/' + item.id}>
+                        <img src={item.photos.small != null ? item.photos.small : userPhoto}
+                             className={classes.userPhoto} 
+                        />
+                        </NavLink>
+                    </div>
+                    <div>
+                        {item.followed
+                            ? 
+                            <button disabled={props.followingInProgress.some(id => id === item.id)} 
+                                    onClick={() => {props.unfollow(item.id)}}>Unfollow
+                            </button> 
+                            : 
+                            <button disabled={props.followingInProgress.some(id => id === item.id)} 
+                                    onClick={() => {props.follow(item.id)}}>Follow
+                                </button>
+                        }
+                    </div>
+                </span>
+                <span>
+                    <span>
+                        <div>{item.name}</div>
+                        <div>{item.status}</div>
+                    </span>
+                    <span>
+                        <div>item.location.city</div>
+                        <div>item.location.country</div>
+                    </span>
+                </span>
+            </div>
+        )
+    }
+</div>
     )
 }
 
