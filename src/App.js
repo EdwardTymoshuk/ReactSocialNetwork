@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route} from 'react-router-dom';
 import './App.css';
-import Header from './components/Header/Header';
+import HeaderContainer from './components/Header/HeaderContainer';
 import Navbar from './components/Navbar/Navbar';
 import News from './components/News/News';
 import Music from './components/Music/Music';
@@ -21,14 +21,13 @@ class App extends React.Component {
   componentDidMount() {
     this.props.initializeApp();
   }
-
   render(){
     if(!this.props.initialized) {
       return <Preloader />
     } 
     return (
       <div className="app">
-        <Header />
+        <HeaderContainer />
         <Navbar />
         <div className="app-wrapper-content">
           <Route path="/profile/:userId?" render={() => <ProfileContainer />}/>

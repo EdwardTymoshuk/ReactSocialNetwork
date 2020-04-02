@@ -4,7 +4,7 @@ import classes from './Settings.module.css';
 const Settings = () => {
     return (
       <div>
-      <h2>Sosy huj - its SETTINGS</h2>
+      <h2>Here will be a SETTINGS PAGE</h2>
     </div>
     )
 }

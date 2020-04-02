@@ -10,12 +10,12 @@ let initialState = {
         {id:6, name: "Kirkorov"}
     ],
     messages: [
-        {id:1, message: "Pasasy mij huj"},
-        {id:2, message: "Poshol nahuj"},
-        {id:3, message: "Pidaras verny babki"},
-        {id:4, message: "Zalupu v dupu"},
-        {id:5, message: "Pidar"},
-        {id:6, message: "Zopa"}
+        {id:1, message: "Hello, how are You ?"},
+        {id:2, message: "Hi! Nice to see you."},
+        {id:3, message: "Hola!"},
+        {id:4, message: "Hello!!!"},
+        {id:5, message: "Hey, wat`s up ?"},
+        {id:6, message: "Hellllo///"}
     ]
 }
 
