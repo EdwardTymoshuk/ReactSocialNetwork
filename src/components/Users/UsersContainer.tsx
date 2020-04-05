@@ -5,19 +5,40 @@ import Users from './Users';
 import Preloader from '../common/preloader/Preloader';
 import { compose } from 'redux';
 import { getUsers, getPageSize, getTotalItemsCount, getCurrentPage, getIsFetching, getFollowingInProgress } from '../../redux/usersSelectors';
+import { UsersType } from '../../types/types';
+import {AppStateType} from '../../redux/redux-store';
 
-class UsersContainer extends React.Component {
+type MapStateType = {
+    currentPage: number,
+    pageSize: number,
+    isFetching: boolean,
+    totalItemsCount: number,
+    users: Array<UsersType>,
+    followingInProgress: Array<number>
+}
+type MapDispatchType = {
+    follow: (userId: number) => void,
+    unfollow: (userId: number) => void,
+    requestUsers: (currentPage: number, pageSize: number) => void
+}
+type OwnPropsType = {
+    pageTitle: string
+}
+type PropsType = MapStateType & MapDispatchType & OwnPropsType;
+
+class UsersContainer extends React.Component<PropsType> {
     componentDidMount() {
         let {currentPage, pageSize} = this.props;
         this.props.requestUsers(currentPage, pageSize);
     }
-    onPageChanged = (pageNumber) => {
-        let {pageSize}= this.props;
+    onPageChanged = (pageNumber: number) => {
+        let {pageSize} = this.props;
         this.props.requestUsers(pageNumber, pageSize);
     }
     render() {
         return (
             <>
+            <h2>{this.props.pageTitle}</h2>
                 {this.props.isFetching ? <Preloader /> : null}
                 <Users totalItemsCount={this.props.totalItemsCount}
                     pageSize={this.props.pageSize}
@@ -33,7 +54,7 @@ class UsersContainer extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: AppStateType) => {
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
@@ -45,6 +66,6 @@ const mapStateToProps = (state) => {
 }
 
 export default compose(
-    connect(mapStateToProps, {follow, unfollow, setCurrentPage, toggleFollowingProgress, requestUsers}),
+    connect<MapStateType, MapDispatchType, OwnPropsType, AppStateType>(mapStateToProps, {follow, unfollow, requestUsers}),
     //withAuthRedirect
 )(UsersContainer)

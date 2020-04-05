@@ -28,7 +28,7 @@ export type ProfileType = {
 export type UsersType = {
     id: number,
     name: string,
-    tatus: string,
+    status: string,
     photos: PhotosType,
     followed: boolean
 }
