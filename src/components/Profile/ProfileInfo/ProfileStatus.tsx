@@ -23,7 +23,7 @@ const ProfileStatus: React.FC<PropsType> = (props) => {
         props.updateStatus(status)
     }
 
-    const onStatusChange = (e) => {
+    const onStatusChange = (e: React.FormEvent<HTMLInputElement>) => {
         setStatus(e.currentTarget.value)
     }
         return (

@@ -6,7 +6,7 @@ import { AppStateType } from '../../redux/redux-store'
 
 type MapStateType = {
   isAuth: boolean
-  login: string
+  login: string | null
 }
 
 const HeaderContainer: React.FC<MapStateType> = (props) => {
@@ -20,4 +20,4 @@ const mapStateToProps = (state: AppStateType) => ({
   login: state.auth.login
 })
 
-export default connect<MapStateType>(mapStateToProps, {logout})(HeaderContainer)
+export default connect(mapStateToProps, {logout})(HeaderContainer)

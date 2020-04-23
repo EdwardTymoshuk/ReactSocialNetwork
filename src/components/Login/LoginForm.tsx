@@ -4,7 +4,7 @@ import { Input } from '../common/formsControls/formsControls'
 import { required, FieldValidatorType } from '../../utils/validators/validators'
 import classes from '../common/formsControls/formsControls.module.css'
 
-type LoginFormValuesType = {
+export type LoginFormValuesType = {
   email: string
   password: string
   rememberMe: boolean

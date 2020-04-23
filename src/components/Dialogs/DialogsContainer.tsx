@@ -1,16 +1,16 @@
+import React from 'react'
 import { sendMessage, DialogsType, MessagesType } from '../../redux/dialogsReducer'
 import Dialogs from './Dialogs'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import { withAuthRedirect } from '../../hoc/withAuthRedirect'
-import { compose } from '../../../../../../Library/Caches/typescript/3.5/node_modules/redux'
 import { AppStateType } from '../../redux/redux-store'
+import { compose } from 'redux'
 
 type DialogsPage = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
     newMessageBody: string
 }
-
 type MapStateType = {
     dialogsPage: DialogsPage
     isAuth: boolean
@@ -18,9 +18,12 @@ type MapStateType = {
 type MapDispatchType = {
     sendMessage: (newMessaBody: string) => void
 }
-type OwnPropsType = {
 
-}
+const DialogsContainer: React.FC<MapStateType & MapDispatchType> = (props) => {
+    return (
+        <Dialogs {...props}/>
+    )
+} 
 
 const mapStateToProps = (state: AppStateType) => {
     return {
@@ -30,7 +33,7 @@ const mapStateToProps = (state: AppStateType) => {
 }
 
 export default compose(
-    connect<MapStateType, MapDispatchType, OwnPropsType, AppStateType>(mapStateToProps, {sendMessage}),
+    connect(mapStateToProps, {sendMessage}),
     withAuthRedirect
-    )(Dialogs)
+    )(DialogsContainer)
 

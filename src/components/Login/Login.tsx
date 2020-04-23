@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { login } from '../../redux/authReducer'
 import { Redirect } from 'react-router-dom'
 import { AppStateType } from '../../redux/redux-store'
-import { LoginFormValuesType } from '../../types/types';
+import { LoginFormValuesType } from './LoginForm';
 
 type MapStatePropsType = {
   isAuth: boolean
