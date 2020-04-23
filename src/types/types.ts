@@ -1,3 +1,6 @@
+import { WrappedFieldProps } from "redux-form";
+import { FieldValidatorType } from "../utils/validators/validators";
+
 export type PostsType = {
     id: number,
     message: string,

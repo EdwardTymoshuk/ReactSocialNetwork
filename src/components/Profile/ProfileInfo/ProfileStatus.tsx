@@ -1,24 +1,30 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react'
 
-const ProfileStatus = (props) => {
-    let [editMode, setEditMode] = useState(false);
-    let [status, setStatus] = useState(props.status);
+type PropsType = {
+    status: string
+
+    updateStatus: (status: string) => void
+}
+
+const ProfileStatus: React.FC<PropsType> = (props) => {
+    let [editMode, setEditMode] = useState(false)
+    let [status, setStatus] = useState(props.status)
 
     useEffect(() => {
-        setStatus(props.status);
+        setStatus(props.status)
     }, [props.status]
     )
     
     const activateEditMode = () => {
-            setEditMode(true);
+            setEditMode(true)
     }
     const deactivateEditMode = () => {
-        setEditMode(false);
-        props.updateStatus(status);
+        setEditMode(false)
+        props.updateStatus(status)
     }
 
     const onStatusChange = (e) => {
-        setStatus(e.currentTarget.value);
+        setStatus(e.currentTarget.value)
     }
         return (
             <div>
@@ -39,4 +45,4 @@ const ProfileStatus = (props) => {
         )
 } 
 
-export default ProfileStatus;
+export default ProfileStatus

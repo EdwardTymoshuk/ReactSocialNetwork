@@ -1,5 +1,5 @@
-import React from 'react';
-import classes from './Settings.module.css';
+import React from 'react'
+import classes from './Settings.module.css'
 
 const Settings = () => {
     return (
@@ -9,4 +9,4 @@ const Settings = () => {
     )
 }
 
-export default Settings;
+export default Settings

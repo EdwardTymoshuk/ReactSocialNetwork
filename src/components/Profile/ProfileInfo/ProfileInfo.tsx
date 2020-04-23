@@ -3,8 +3,17 @@ import classes from './ProfileInfo.module.css';
 import Preloader from '../../common/preloader/Preloader';
 import ProfileStatus from './ProfileStatus';
 import userPhoto from '../../../assets/images/user.png';
+import { ProfileType } from '../../../types/types';
 
-const ProfileInfo = ({isOwner, profile, updateStatus, status}) => {
+type PropsType = {
+    isOwner: boolean
+    profile: ProfileType
+    status: string
+
+    updateStatus: (status: string) => void
+}
+
+const ProfileInfo: React.FC<PropsType> = ({isOwner, profile, updateStatus, status}) => {
 if (!profile) { 
     return <Preloader />
 }
@@ -16,7 +25,6 @@ if (!profile) {
                 <ProfileStatus status={status} updateStatus={updateStatus}/>
                 <div>Name: {profile.fullName}</div>
                 <div>Id: {profile.userId}</div>
-                <div>About me: {profile.aboutMe}</div>
             </div>
         </div>
     )

@@ -1,12 +1,12 @@
 import { usersAPI, profileAPI } from '../api/api'
-import { PostsType, ProfileType } from '../types/types';
-import { Dispatch } from 'redux';
-import { AppStateType } from './redux-store';
-import { ThunkAction } from 'redux-thunk';
+import { PostsType, ProfileType } from '../types/types'
+import { Dispatch } from 'redux'
+import { AppStateType } from './redux-store'
+import { ThunkAction } from 'redux-thunk'
 
-const ADD_POST = 'ADD-POST';
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const SET_STATUS = 'SET_STATUS';
+const ADD_POST = 'ADD-POST'
+const SET_USER_PROFILE = 'SET_USER_PROFILE'
+const SET_STATUS = 'SET_STATUS'
 
 let initialState = {
         posts: [
@@ -18,7 +18,7 @@ let initialState = {
         newPostText: ''
 }
 
-export type InitialStateType = typeof initialState;
+export type InitialStateType = typeof initialState
 const profileReducer = (state = initialState, action: ActionTypes): InitialStateType => {
         switch (action.type) {
                 case ADD_POST: {
@@ -26,27 +26,27 @@ const profileReducer = (state = initialState, action: ActionTypes): InitialState
                                 id: 5,
                                 message: action.newPostText,
                                 likeCount: 0
-                        };
+                        }
                         return {
                                 ...state,
                                 posts: [newPost, ...state.posts],
                                 newPostText: ''
-                        };
+                        }
                 }
                 case SET_USER_PROFILE: {
                         return {
                                 ...state,
                                 profile: action.profile
-                        };
+                        }
                 }
                 case SET_STATUS: {
                         return {
                                 ...state,
                                 status: action.status
-                        };
+                        }
                 }
                 default:
-                        return state;
+                        return state
         }
 }
 
@@ -56,7 +56,7 @@ type AddPostActionCreatorActionType = {
         type: typeof ADD_POST
         newPostText: string
 }
-export const addPostActionCreator = (newPostText: string): AddPostActionCreatorActionType => ({ type: ADD_POST, newPostText })
+export const addPost = (newPostText: string): AddPostActionCreatorActionType => ({ type: ADD_POST, newPostText })
 
 type SetUserProfileActionType = {
         type: typeof SET_USER_PROFILE
@@ -71,18 +71,18 @@ type SetStatusActionType = {
 export const setStatus = (status: string | null): SetStatusActionType => ({ type: SET_STATUS, status })
 
 export const getUserProfile = (userId: number): ThunkAction<Promise<void>, AppStateType, unknown, ActionTypes> => async (dispatch: Dispatch<ActionTypes>) => {
-        let response = await usersAPI.getProfile(userId);
-        dispatch(setUserProfile(response.data));
+        let response = await usersAPI.getProfile(userId)
+        dispatch(setUserProfile(response.data))
 }
 export const getStatus = (userId: number): ThunkAction<Promise<void>, AppStateType, unknown, ActionTypes> => async (dispatch: Dispatch<ActionTypes>) => {
-        let response = await profileAPI.getStatus(userId);
-        dispatch(setStatus(response.data));
+        let response = await profileAPI.getStatus(userId)
+        dispatch(setStatus(response.data))
 }
 export const updateStatus = (status: string | null): ThunkAction<Promise<void>, AppStateType, unknown, ActionTypes> => async (dispatch: Dispatch<ActionTypes>) => {
-        let response = await profileAPI.updateStatus(status);
+        let response = await profileAPI.updateStatus(status)
         if (response.data.resultCode === 0) {
-                dispatch(setStatus(status));
+                dispatch(setStatus(status))
         }
 }
 
-export default profileReducer;
+export default profileReducer

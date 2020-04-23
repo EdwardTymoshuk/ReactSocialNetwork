@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 import classes from './Users.module.css'
-import Paginator from '../common/paginator/Paginator';
-import User from './User';
-import {UsersType} from '../../types/types';
+import Paginator from '../common/paginator/Paginator'
+import User from './User'
+import {UsersType} from '../../types/types'
 
 type PropsType = {
     currentPage: number, 
@@ -31,4 +31,4 @@ const Users: React.FC<PropsType> = ({currentPage, totalItemsCount, pageSize, onP
 </div>
     )
 }
-export default Users;
+export default Users

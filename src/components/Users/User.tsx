@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import classes from './Users.module.css'
 import userPhoto from '../../assets/images/user.png'
 import {NavLink} from 'react-router-dom'
@@ -49,4 +49,4 @@ const User: React.FC<PropsType> = ({user, followingInProgress, follow, unfollow}
     )
                     }
 
-export default User;
+export default User
